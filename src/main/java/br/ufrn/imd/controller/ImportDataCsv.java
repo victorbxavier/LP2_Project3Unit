@@ -20,7 +20,7 @@ public class ImportDataCsv extends ManipuleData {
     private List<String[]> lines = new ArrayList<>();
 
 
-    static final String PATH_FILE = "/home/michelle/semestre/projeto_final/fakeNews_detector/src/main/resources/dataset/boatos.csv";
+    static final String PATH_FILE = "src/main/resources/dataset/boatos.csv";
 
     public void loadCSVData() throws IOException, CsvException {
 

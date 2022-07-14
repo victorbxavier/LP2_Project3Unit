@@ -16,6 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.lang.Integer.max;
 import static java.lang.Integer.parseInt;
 
 /*
@@ -29,7 +30,7 @@ import static java.lang.Integer.parseInt;
  * */
 public abstract class ManipuleData implements SimilarityAnalysis, PreProcessing {
 
-    protected NewsDao dao;
+    protected NewsDao dao = NewsDao.getInstance();
 
     @Override
     public double levDistance(String txt1, String txt2) {
@@ -90,7 +91,7 @@ public abstract class ManipuleData implements SimilarityAnalysis, PreProcessing 
         fakenews.setLink(data.get(2));
         String[] data1 = fakenews.getText_original().split(" ");
         fakenews.setText_format(cleanString(fakenews.getText_original()));
-        fakenews.setTimestamp(convertTimestamp(data.get(3)));
+        //fakenews.setTimestamp(convertTimestamp(data.get(3)));
         return fakenews;
     }
 
@@ -127,7 +128,7 @@ public abstract class ManipuleData implements SimilarityAnalysis, PreProcessing 
 
         }
 
-        return (levdistanceBigger+jaroWinklerSimilarity)/2;
+        return Double.max(levdistanceBigger,jaroWinklerSimilarity);
     }
 
     //metodo abstrato
